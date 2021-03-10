@@ -1,9 +1,19 @@
 const express = require("express");
-const app = express();
-const PORT = 8000;
-app.get("/", (req, res) => {
-  res.send("get req worked");
+const mongoose = require("mongoose");
+const routes = require("./routes/route");
+require("dotenv").config({ path: ".env" });
+mongoose.connect(process.env.CONNECT, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
 });
-app.listen(PORT, () => {
-  console.log("server is running in port", PORT);
+mongoose.Promise = global.Promise;
+mongoose.connection.on("error", (err) => {
+  console.error("DB connect error", err.message);
+});
+const app = express();
+const port = process.env.PORT || 8000;
+app.use(express.json());
+app.use("/", routes);
+app.listen(port, () => {
+  console.log("server is running in port", port);
 });
