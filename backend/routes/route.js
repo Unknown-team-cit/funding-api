@@ -7,7 +7,6 @@ router.get("/work", async (req, res) => {
 });
 
 router.post("/addstartup", async (req, res) => {
-  console.log("body", req.body);
   await new Startup(req.body).save((err, data) => {
     if (err) {
       res.send("error", err);
@@ -16,6 +15,14 @@ router.post("/addstartup", async (req, res) => {
         status: "success",
       });
     }
+  });
+});
+
+router.get("/deleteAll", async (req, res) => {
+  await Startup.deleteMany({}).then(() => {
+    res.json({
+      status: "deleted successfully",
+    });
   });
 });
 
