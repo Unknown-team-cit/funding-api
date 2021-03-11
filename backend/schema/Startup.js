@@ -50,5 +50,5 @@ const StartupSchema = new mongoose.Schema(
   }
 );
 
-const Startup = mongoose.model("startup", StartupSchema);
+const Startup = mongoose.model("startup", StartupSchema, "startup");
 module.exports = Startup;
