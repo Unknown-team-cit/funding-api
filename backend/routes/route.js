@@ -57,7 +57,6 @@ router.delete("/delete/:id", async (req, res) => {
     if (err) {
       res.send("error", err);
     } else {
-      console.log(data);
       res.status(200).json({
         status: "deleted",
         data,
