@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Startup = require("../schema/Startup");
-router.get("/work", async (req, res) => {
+router.get("/getStartup", async (req, res) => {
   const startups = await Startup.find();
   res.json(startups);
 });
@@ -9,12 +9,24 @@ router.get("/work", async (req, res) => {
 router.post("/addstartup", async (req, res) => {
   await new Startup(req.body).save((err, data) => {
     if (err) {
-      res.send("error", err);
+      console.log("error in deleting", err);
     } else {
       res.json({
-        status: "success",
+        status: "Added successfully",
       });
     }
+  });
+});
+
+router.put("/updateStartup/:id", async (req, res) => {
+  const id = req.params.id;
+  await Startup.findByIdAndUpdate(id, { $set: req.body }, (err, data) => {
+    if (err) {
+      console.log("error in updating", err);
+    }
+  });
+  res.json({
+    status: "updated successfully",
   });
 });
 
@@ -23,6 +35,19 @@ router.get("/deleteAll", async (req, res) => {
     res.json({
       status: "deleted successfully",
     });
+  });
+});
+
+router.get("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  await Startup.findByIdAndDelete(id, (err, data) => {
+    if (err) {
+      console.log("error in deleting", err);
+    } else {
+      res.json({
+        status: "deleted successfully",
+      });
+    }
   });
 });
 
