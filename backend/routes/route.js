@@ -38,14 +38,29 @@ router.get("/deleteAll", async (req, res) => {
   });
 });
 
-router.get("/delete/:id", async (req, res) => {
-  const id = req.params.id;
-  await Startup.findByIdAndDelete(id, (err, data) => {
+// router.get("/delete/:id", async (req, res) => {
+//   const id = req.params.id;
+//   await Startup.findByIdAndDelete(id, (err, data) => {
+//     if (err) {
+//       console.log("error in deleting", err);
+//     } else {
+//       res.json({
+//         status: "deleted successfully",
+//       });
+//     }
+//   });
+// });
+
+router.delete("/delete/:id", async (req, res) => {
+  let postID = req.params.id;
+  await Startup.deleteOne({ _id: postID }, (err, data) => {
     if (err) {
-      console.log("error in deleting", err);
+      res.send("error", err);
     } else {
-      res.json({
-        status: "deleted successfully",
+      console.log(data);
+      res.status(200).json({
+        status: "deleted",
+        data,
       });
     }
   });
