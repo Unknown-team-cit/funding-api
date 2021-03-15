@@ -44,6 +44,14 @@ const StartupSchema = new mongoose.Schema(
     post_content: {
       type: String,
     },
+    messages: [
+      {
+        _id: false,
+        name: String,
+        contact: String,
+        message: String,
+      },
+    ],
   },
   {
     versionKey: false,
