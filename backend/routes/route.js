@@ -73,4 +73,25 @@ router.delete("/delete/:id", async (req, res) => {
   });
 });
 
+router.post('/login', async(req,res)=>{
+  let email= req.params.email;
+  let password= req.params.password;
+  let company=Startup.findOne(email,(err,data)=>{
+    if (err){
+      res.send('Email Not Found');
+    }
+    else{
+      company.findOne(password,(err,data)=>{
+        if (err) {
+          res.send('Incorrect Password');
+        }
+        else{
+          res.json(company)
+        }
+      })
+      
+    }
+  })
+})
+
 module.exports = router;
