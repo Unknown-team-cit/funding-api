@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const Startup = require("../schema/Startup");
+
 router.get("/getStartup", async (req, res) => {
   const startups = await Startup.find();
   res.json(startups);
+});
+
+router.get('/getStartupId/:id', async(req,res)=>{
+  const id = req.params.id;
+  const company= await Startup.findById(id);
+  res.json(company);
+  
 });
 
 router.post("/addstartup", async (req, res) => {
