@@ -86,20 +86,12 @@ router.delete("/delete/:id", async (req, res) => {
 router.post('/login', async(req,res)=>{
   let email= req.body.Email;
   let password= req.body.Password;
-  let company= await Startup.find(email,(err,data)=>{
+  let company= await Startup.findOne(req.body,(err,data)=>{
     if (err){
-      res.send(`email ${email} ${pass}`);
+      res.send(`Wrong email or Password`);
     }
     else{
-      company.findOne(password,(err,data)=>{
-        if (err) {
-          res.send('Incorrect Password');
-        }
-        else{
-          res.json(company)
-        }
-      })
-      
+      res.json(data)
     }
   })
 })
