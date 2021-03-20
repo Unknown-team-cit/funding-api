@@ -6,6 +6,10 @@ const StartupSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    CompanyRegNumber:{
+      type:String,
+      require:true
+    },
     NameofCeo: {
       type: String,
       required: true
