@@ -58,10 +58,10 @@ const StartupSchema = new mongoose.Schema(
     },
     messages: [
       {
-        _id: false,
-        name: String,
-        contact: String,
-        message: String,
+        
+        InvestorName: String,
+        InvestorContact: String,
+        Message: String,
       },
     ],
   },

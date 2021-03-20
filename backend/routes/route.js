@@ -51,9 +51,11 @@ router.get("/deleteAll", async (req, res) => {
 
 router.post("/message/:id", async (req, res) => {
   const id = req.params.id;
+  const message = req.body;
+
   Startup.findByIdAndUpdate(
     id,
-    { $push: { messages: req.body.messages } },
+    { $push: { messages: message} },
     { upsert: true, new: true },
     (error, data) => {
       if (error) {
@@ -82,11 +84,11 @@ router.delete("/delete/:id", async (req, res) => {
 });
 
 router.post('/login', async(req,res)=>{
-  let email= req.params.email;
-  let password= req.params.password;
-  let company=Startup.findOne(email,(err,data)=>{
+  let email= req.body.Email;
+  let password= req.body.Password;
+  let company= await Startup.find(email,(err,data)=>{
     if (err){
-      res.send('Email Not Found');
+      res.send(`email ${email} ${pass}`);
     }
     else{
       company.findOne(password,(err,data)=>{
