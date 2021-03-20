@@ -2,57 +2,57 @@ const mongoose = require("mongoose");
 
 const StartupSchema = new mongoose.Schema(
   {
-    name_of_company: {
+    CompanyName: {
       type: String,
       required: true
     },
-    name_of_owner: {
+    NameofCeo: {
       type: String,
       required: true
     },
-    work_field: {
+    FeildOfWork: {
       type: String,
       required: true
     },
-    website_link: {
+    CompanyWebsite: {
       type: String,
     },
-    linkedin: {
-      type: String,
-      required: true
-    },
-    ph_number: {
+    Linkedin: {
       type: String,
       required: true
     },
-    email_id: {
+    Contact: {
       type: String,
       required: true
     },
-    password: {
+    Email: {
+      type: String,
+      required: true,
+    },
+    Password: {
       type: String,
       required: true
     },
-    ppt_link: {
+    SlideLink: {
       type: String,
     },
-    country: {
-      type: String,
-      required: true
-    },
-    state: {
+    Country: {
       type: String,
       required: true
     },
-    city: {
+    State: {
       type: String,
       required: true
     },
-    domain: {
+    City: {
       type: String,
       required: true
     },
-    post_content: {
+    Domain: {
+      type: String,
+      required: true
+    },
+    InvestorContent: {
       type: String,
       required: true
     },
